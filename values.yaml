@@ -12,5 +12,3 @@ ingress:
   servicePort: 1337
 
 persistentVolume: true
-
-replicas: 1
