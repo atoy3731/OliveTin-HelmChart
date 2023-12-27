@@ -21,7 +21,12 @@ spec:
             - name: olivetin-config
               mountPath: "/config"
               readOnly: true
-
+            {{- if or (.Values.ssh.existingSecret) (.Values.ssh.authorizedKeys) }}
+            - name: olivetin-ssh-config
+              mountPath: "/home/olivetin/.ssh/authorized_keys"
+              subPath: "authorized_keys"
+              readOnly: true
+            {{- end }}       
           livenessProbe:
             exec:
               command:
@@ -29,8 +34,17 @@ spec:
                 - localhost:{{ .Values.ingress.servicePort }}
             initialDelaySeconds: 5
             periodSeconds: 30
-
       volumes:
         - name: olivetin-config
           configMap:
             name: olivetin-config
+        {{- if .Values.ssh.existingSecret }}
+        - name: olivetin-ssh-secret
+          secret:
+            name: {{ .Values.ssh.existingSecret }}
+        {{- else if .Values.ssh.authorizedKeys }}
+        - name: olivetin-ssh-secret
+          secret:
+            name: olivetin-ssh-secret
+        {{- end }}
+
