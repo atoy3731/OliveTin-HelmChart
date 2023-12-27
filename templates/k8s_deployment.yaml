@@ -9,6 +9,11 @@ spec:
       app: olivetin
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/k8s_configmap.yaml") . | sha256sum }}
+        {{- if .Values.ssh.id_rsa }}
+        checksum/secret: {{ include (print $.Template.BasePath "/k8s_ssh_secret.yaml") . | sha256sum }}
+        {{- end }}
       labels:
         app: olivetin
     spec:
