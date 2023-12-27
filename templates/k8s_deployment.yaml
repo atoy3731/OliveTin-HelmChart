@@ -22,7 +22,7 @@ spec:
               mountPath: "/config"
               readOnly: true
             {{- if or (.Values.ssh.existingSecret) (.Values.ssh.id_rsa) }}
-            - name: olivetin-ssh-config
+            - name: olivetin-ssh-secret
               mountPath: "/home/olivetin/.ssh/id_rsa"
               subPath: "id_rsa"
               readOnly: true
