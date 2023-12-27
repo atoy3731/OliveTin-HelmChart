@@ -26,7 +26,7 @@ spec:
               mountPath: "/home/olivetin/.ssh/id_rsa"
               subPath: "id_rsa"
               readOnly: true
-            {{- end }}       
+            {{- end }}
           livenessProbe:
             exec:
               command:
