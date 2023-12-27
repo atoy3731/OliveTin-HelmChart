@@ -41,10 +41,10 @@ spec:
         {{- if .Values.ssh.existingSecret }}
         - name: olivetin-ssh-secret
           secret:
-            name: {{ .Values.ssh.existingSecret }}
+            secretName: {{ .Values.ssh.existingSecret }}
         {{- else if .Values.ssh.id_rsa }}
         - name: olivetin-ssh-secret
           secret:
-            name: olivetin-ssh-secret
+            secretName: olivetin-ssh-secret
         {{- end }}
 
