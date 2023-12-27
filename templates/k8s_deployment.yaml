@@ -21,10 +21,10 @@ spec:
             - name: olivetin-config
               mountPath: "/config"
               readOnly: true
-            {{- if or (.Values.ssh.existingSecret) (.Values.ssh.authorizedKeys) }}
+            {{- if or (.Values.ssh.existingSecret) (.Values.ssh.id_rsa) }}
             - name: olivetin-ssh-config
-              mountPath: "/home/olivetin/.ssh/authorized_keys"
-              subPath: "authorized_keys"
+              mountPath: "/home/olivetin/.ssh/id_rsa"
+              subPath: "id_rsa"
               readOnly: true
             {{- end }}       
           livenessProbe:
@@ -42,7 +42,7 @@ spec:
         - name: olivetin-ssh-secret
           secret:
             name: {{ .Values.ssh.existingSecret }}
-        {{- else if .Values.ssh.authorizedKeys }}
+        {{- else if .Values.ssh.id_rsa }}
         - name: olivetin-ssh-secret
           secret:
             name: olivetin-ssh-secret

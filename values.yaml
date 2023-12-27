@@ -7,9 +7,46 @@ config: |-
 containerVersion: latest
 
 ssh:
-  existingSecret: ""
-  authorizedKeys: |
-    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnAMDEhlA45kJmCWXur2bpSZv7kt87sdSn/d0JymNxvQXCrVs4CGYkg7tWL0KzCU6NF3INqQxaXFxncXnMd6erVqvxzaAdI2CDOFWwK8kUmydDGPWNxhbXJIFsTFaUjYiD/8G0t3NRI89xUm6ZhquYP6ia1GmfNFvJMWuKNgeSfZMn/ThU3BtTt8tfn8mr25nEA4XgBvfXepGycCVofGeVqSUXx1WNkZw4XmLEQ6Tw6TBMAVb3kXHO5vgjQBw9/KAfZX6MyJCdzkXNrWwXU/BfxFjS/aHQm7PYnmCuSALx28ODIxXREnM+ldwHLx8tXybJM5W6G8QTG+3wq1hVEkR2wBJYAPC5WoGNGh6nLXZ0AFCQXNF+MUKvwpf3MwcU2dMzGlSE0ZJ45t/TI+EKtPK8YXjIc6jfM60NLo31VX8ffeXC7btummKMYGa7+Q97VmyMHpYTOMwqhczAkxswabU8OCQFwJe1dirCDUEr5YKVlcuK7NUyldReRlIndvPr4s8= example.com
+  existingSecret: "" # Recommended to use pre-existing secret with `id_rsa` key.
+  authorizedKeys: | # Example Key Below if you want to use it inline, but be careful not to push this to Github!
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    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
+    -----END OPENSSH PRIVATE KEY-----
 
 ingress:
   enabled: true
